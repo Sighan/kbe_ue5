@@ -23,7 +23,7 @@ public class CounterFactoryTest extends TestCase {
     public void testGetInstaceTypeSimple() {
         String type = CounterFactory.SINGLE;
         Counter result = CounterFactory.getInstace(type);
-        assertNotSame(result, null);
+        assertEquals(result.getClass().getSimpleName(), "CounterSimple");
     }
     
     /**
@@ -32,7 +32,7 @@ public class CounterFactoryTest extends TestCase {
     public void testGetInstaceTypeDouble() {
         String type = CounterFactory.DOUBLE;
         Counter result = CounterFactory.getInstace(type);
-        assertNotSame(result, null);
+        assertEquals(result.getClass().getSimpleName(), "CounterDouble");
     }
     
     /**
@@ -41,9 +41,30 @@ public class CounterFactoryTest extends TestCase {
     public void testGetInstaceTypeTriple() {
         String type = CounterFactory.TRIPLE;
         Counter result = CounterFactory.getInstace(type);
-        assertNotSame(result, null);
+        assertEquals(result.getClass().getSimpleName(), "CounterTriple");
     }
     
+    public void testIncrementS() {
+        String type = CounterFactory.SINGLE;
+        Counter result = CounterFactory.getInstace(type);
+        result.increment();
+        result.increment();
+        assertEquals(result.getCounter(), 2);
+    }
+    public void testIncrementD() {
+        String type = CounterFactory.DOUBLE;
+        Counter result = CounterFactory.getInstace(type);
+        result.increment();
+        result.increment();
+        assertEquals(result.getCounter(), 4);
+    }
+    public void testIncrementT() {
+        String type = CounterFactory.TRIPLE;
+        Counter result = CounterFactory.getInstace(type);
+        result.increment();
+        result.increment();
+        assertEquals(result.getCounter(), 6);
+    }
     /**
      * Test of getInstace method, of class CounterFactory.
      */
